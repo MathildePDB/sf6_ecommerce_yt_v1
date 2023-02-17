@@ -10,7 +10,7 @@
 - ajout et modification entité (produit)
 - gestion des catégories avec parents et enfants
 - dataFixtures pour générer des données au démarrage 
-- vérification de l'adresse email
+- vérification de l'adresse email - MailHog
 - récupération du mot de passe
 - pages d'erreur
 - pagination
