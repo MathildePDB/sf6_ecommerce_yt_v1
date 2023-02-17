@@ -1,5 +1,5 @@
--------------------- ecommerce_sf6 --------------------
-------------- tuto NouvelleTechno Symfony6 ------------
+-------------------- ecommerce_sf6 --
+-- tuto NouvelleTechno Symfony6 ------------
 
 
 ------------- Symfony 6.1.2 --- PHP 8.2.1 -------------
