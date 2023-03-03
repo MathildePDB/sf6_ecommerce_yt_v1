@@ -4,7 +4,7 @@
 
 ------------- Symfony 6.1.2 --- PHP 8.2.1 -------------
 
--- Contenu du tuto --
+-- Contenu du site --
 
 - Gestion des utilisateurs et des permissions
 - ajout et modification entité (produit)
