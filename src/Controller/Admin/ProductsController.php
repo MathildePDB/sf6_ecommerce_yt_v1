@@ -45,7 +45,7 @@ class ProductsController extends AbstractController
             
             foreach ($images as $image) {
                 // on définit le dossier de destination
-                $folder = 'product';
+                $folder = 'products';
 
                 // on appelle le service d'ajout
                 $fichier = $pictureService->add($image, $folder, 300, 300);
@@ -100,7 +100,7 @@ class ProductsController extends AbstractController
             
             foreach ($images as $image) {
 
-                $folder = 'product';
+                $folder = 'products';
 
                 $fichier = $pictureService->add($image, $folder, 300, 300);
 

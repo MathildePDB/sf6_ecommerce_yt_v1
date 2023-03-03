@@ -12,7 +12,7 @@
                 <div class="col-3">
                     <article class="card h-100">
                         <div class="card-body">
-                        <img src="{{ asset('assets/uploads/product/mini/300x300-' ~ product.images[0].name) }}" class="card-img-top" alt="{{ product.name}}">
+                        <img src="{{ asset('assets/uploads/products/mini/300x300-' ~ product.images[0].name) }}" class="card-img-top" alt="{{ product.name}}">
                             <h2 class="card-title">{{ product.name }}</h2>
                             <p class="card-text">{{ product.description }}</p>
                             <a href="{{ path('products_details', {"slug": product.slug }) }}" class="btn btn-primary">Voir les détails</a>
