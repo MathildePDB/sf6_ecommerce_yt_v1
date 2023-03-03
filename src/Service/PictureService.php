@@ -72,5 +72,43 @@ class PictureService
         $resized_picture = imagecreatetruecolor($width, $height);
         imagecopyresampled($resized_picture, $picture_source, 0, 0, $src_x, $src_y, $width, $height, $squareSize, $squareSize);
 
+        $path = $this->params->get('images_directory') . $folder;
+
+        // on crée le dossier de destination s'il n'existe pas
+        if (!file_exists($path . '/mini/')) {
+            mkdir($path . '/mini/', 0755, true);
+        }
+
+        // on stocke l'image recadrée
+        imagewebp($resized_picture, $path . '/mini/' . $width . 'x' . $height . '-' . $fichier);
+
+        // on déplace le fichier
+        $picture->move($path . '/', $fichier);
+
+        return $fichier;
+    }
+
+    public function delete(string $fichier, ?string $folder = '', ?int $width = 250, ?int $height = 250)
+    {
+        if ($fichier !== 'default.webp') {
+            $success = false;
+            $path = $this->params->get('images_directory') . $folder;
+
+            $mini = $path . '/mini/' . $width . 'x' . $height . '-' . $fichier;
+
+            if (file_exists($mini)) {
+                unlink($mini);
+                $success = true;
+            }
+
+            $original = $path . '/' . $fichier;
+
+            if (file_exists($original)) {
+                unlink($original);
+                $success = true;
+            }
+            return $success;
+        }
+        return false;
     }
 }
