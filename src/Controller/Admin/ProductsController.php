@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Images;
 use App\Entity\Products;
 use App\Form\ProductsFormType;
+use App\Repository\ProductsRepository;
 use App\Service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,9 +19,10 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class ProductsController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(): Response
+    public function index(ProductsRepository $productsRepository): Response
     {
-        return $this->render('admin/products/index.html.twig');
+        $produits = $productsRepository->findAll();
+        return $this->render('admin/products/index.html.twig', compact('produits'));
     }
 
     #[Route('/ajout', name: 'add')]
@@ -61,8 +63,8 @@ class ProductsController extends AbstractController
             $product->setSlug($slug);
 
             // on arrondit le prix en faisant *100
-            $prix = $product->getPrice() * 100;
-            $product->setPrice($prix);
+            // $prix = $product->getPrice() * 100;
+            // $product->setPrice($prix);
 
             // on va stocker les informations
             $em->persist($product);
@@ -87,8 +89,8 @@ class ProductsController extends AbstractController
         $this->denyAccessUnlessGranted('PRODUCT_EDIT', $product);
 
         // on divise le prix par 100
-        $prix = $product->getPrice() / 100;
-        $product->setPrice($prix);
+        // $prix = $product->getPrice() / 100;
+        // $product->setPrice($prix);
 
         $productForm = $this->createForm(ProductsFormType::class, $product);
 
@@ -112,8 +114,8 @@ class ProductsController extends AbstractController
             $slug = $slugger->slug($product->getName());
             $product->setSlug($slug);
 
-            $prix = $product->getPrice() * 100;
-            $product->setPrice($prix);
+            // $prix = $product->getPrice() * 100;
+            // $product->setPrice($prix);
 
             $em->persist($product);
             $em->flush();
